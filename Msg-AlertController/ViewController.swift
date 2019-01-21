@@ -21,8 +21,20 @@ class ViewController: UIViewController {
         // 취소버튼
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         
+        // 확인버튼
+        let ok = UIAlertAction(title: "확인", style: .default)
+        
+        // 실행버튼
+        let exec = UIAlertAction(title: "실행", style: .destructive)
+        
+        // 중지버튼
+        let stop = UIAlertAction(title: "중지", style: .default)
+        
         // 버튼을 컨트롤러에 등록
         alert.addAction(cancel)
+        alert.addAction(ok)
+        alert.addAction(exec)
+        alert.addAction(stop)
         
         // 알림창 실행
         self.present(alert, animated: false)
