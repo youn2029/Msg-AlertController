@@ -54,6 +54,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // 화면이 표시됨과 동시에 메시지 창을 띄울라면
+        // viewDidLoad()가 아니라 viewDidAppear() 에서 구현
+        // why? viewDidLoad()는 화면이 표시되기 전에 호출됨
+        //      viewDidAppeard()는 화면이 표시가 되고 난후에 호출됨
+        let firstAlert = UIAlertController(title: "알림창", message: "바로 메시지창을 띄움", preferredStyle: .alert)
+        
+        let cancel1 = UIAlertAction(title: "취소", style: .cancel, handler: {(_) in self.result.text = "바로 띄운 알림창 확인!"})
+        
+        firstAlert.addAction(cancel1)
+        
+        self.present(firstAlert, animated: false)
+    }
 
 }
 
