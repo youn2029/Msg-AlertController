@@ -61,7 +61,8 @@ class ViewController: UIViewController {
             (_) in
             // 확인 버튼을 클릭했을 때 처리할 내용
             if let tf = alert.textFields?.first {
-                self.result.text = "입력된 값은 \(tf.text!)입니다."
+                //self.result.text = "입력된 값은 \(tf.text!)입니다."
+                print("입력된 값은 \(tf.text!)입니다.")
             }else {
                 print("입력된 값이 없습니다.")
             }
@@ -79,6 +80,45 @@ class ViewController: UIViewController {
         
         self.present(alert, animated: false)
         
+    }
+    
+    // 사용자 인증 버튼
+    @IBAction func auth(_ sender: Any) {
+        let msg = "로그인"
+        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let ok = UIAlertAction(title: "확인", style: .default){
+            (_) in
+            
+            // 확인 버튼을 클릭했을때 처리할 내용
+            let loginId = alert.textFields?[0].text
+            let loginPw = alert.textFields?[1].text
+            
+            if loginId == "youn2029" && loginPw == "1234" {
+                self.result.text = "인증되었습니다"
+            }else {
+                self.result.text = "인증에 실패하였습니다."
+            }
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        
+        // 아이디 - 텍스트필드
+        alert.addTextField(configurationHandler: {
+            (tf) in
+            tf.placeholder = "아이디"
+        })
+        
+        // 비밀번호 - 텍스트필드
+        alert.addTextField(configurationHandler: {
+            (tf) in
+            tf.placeholder = "비밀벉호"
+            tf.isSecureTextEntry = true
+        })
+        
+        self.present(alert, animated: false)
     }
     
     override func viewDidLoad() {
